@@ -1,5 +1,14 @@
 # CPPND: Memory Management Chatbot
 
+### How to build in Windows 
+First add CMake Make and wxWeidgets to path, then specify CXX compiler, CC compiler, MinGW generator and wxWidgets root's dirtory when Cmake 
+`cmake .. -DCMAKE_CXX_COMPILER=g++ -DCMAKE_CC_COMPILER=gcc -G "MinGW Makefiles" -DwxWidgets_ROOT_DIR:PATH=D:/path/to/wxWidgets/`
+
+In my computer, this should be:
+`cmake .. -DCMAKE_CXX_COMPILER=g++ -DCMAKE_CC_COMPILER=gcc -G "MinGW Makefiles" -DwxWidgets_ROOT_DIR:PATH=D:/Downloads/wxWidgets-3.1.3`
+
+Then `mingw32-make` instead of `make`
+
 This is the project for the third course in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213): Memory Management.
 
 <img src="images/chatbot_demo.gif"/>
@@ -36,6 +45,9 @@ Your goal is to use the course knowledge to optimize the ChatBot program from a 
 ## Project Task Details
 
 Currently, the program crashes when you close the window. There is a small bug hidden somewhere, which has something to do with improper memory management. So your first warm-up task will be to find this bug and remove it. This should familiarize you with the code and set you up for the rest of the upcoming tasks. Have fun debugging!
+
+My solution:
+_chatbot has been deallocted twice both in chatlogic.cpp and graphnode.cpp, just comment out `delete _chatbot in` graphnode.cpp.
 
 Aside from the bug mentioned above, there are five additional major student tasks in the Memory Management chatbot project, which are:
 
