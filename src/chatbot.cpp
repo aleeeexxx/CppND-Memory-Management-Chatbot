@@ -45,6 +45,64 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 
+// copy constructor
+ChatBot::ChatBot(const ChatBot &source) {   
+    std::cout << "Copy constructor of ChatBot" << std::endl;
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+    _rootNode = source._rootNode;
+    
+    _image = new wxBitmap();
+    *_image = *source._image;
+}
+
+// copy assignment operator
+ChatBot& ChatBot::operator=(const ChatBot &source) {
+    std::cout << "Copy assignment operator of ChatBot" << std::endl;
+    std::cout << "ASSIGNING content of instance " << &source << " to instance " << this << std::endl;
+    if (this == &source)
+        return *this;
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+    _rootNode = source._rootNode;
+    _image = new wxBitmap();
+    *_image = *source._image;
+
+    return *this;
+}
+
+// move constructor
+ChatBot::ChatBot(ChatBot &&source) {
+    std::cout << "Move constructor of ChatBot" << std::endl;
+    std::cout << "MOVING (c’tor) instance " << &source << " to instance " << this << std::endl;
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+    _rootNode = source._rootNode;
+
+    _image = source._image;
+
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._image = NULL;
+}
+
+// move assignment operator
+ChatBot& ChatBot::operator=(ChatBot &&source) {
+    std::cout << "Move assignment operator of ChatBot" << std::endl;
+    if (this == &source)
+        return *this;
+    
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+    _rootNode = source._rootNode;
+    _image = source._image;
+
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._image = NULL;
+
+    return *this;
+}
 ////
 //// EOF STUDENT CODE
 

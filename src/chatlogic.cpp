@@ -213,7 +213,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                 std::cout << "ERROR : Multiple root nodes detected" << std::endl;
             }
         }
-    }
+    } 
 
     // add chatbot to graph root node
     _chatBot->SetRootNode(rootNode);
