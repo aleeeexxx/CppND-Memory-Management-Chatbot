@@ -47,7 +47,7 @@ Your goal is to use the course knowledge to optimize the ChatBot program from a 
 Currently, the program crashes when you close the window. There is a small bug hidden somewhere, which has something to do with improper memory management. So your first warm-up task will be to find this bug and remove it. This should familiarize you with the code and set you up for the rest of the upcoming tasks. Have fun debugging!
 
 My solution:
-_chatbot has been deallocted twice both in chatlogic.cpp and graphnode.cpp, just comment out `delete _chatbot` in graphnode.cpp.
+_chatbot has been deallocted twice both in `chatlogic.cpp` and `graphnode.cpp`, just comment out `delete _chatbot` in `graphnode.cpp`.
 
 Aside from the bug mentioned above, there are five additional major student tasks in the Memory Management chatbot project, which are:
 
@@ -55,13 +55,13 @@ Aside from the bug mentioned above, there are five additional major student task
 In file `chatgui.h` / `chatgui.cpp`, make `_chatLogic` an exclusive resource to class `ChatbotPanelDialog` using an appropriate smart pointer. Where required, make changes to the code such that data structures and function parameters reflect the new structure. 
 
 My solution:
-Create chat logic instance by `this->_chatLogic = std::make_unique<ChatLogic>()` and comment out all content in destructor in chatgui.cpp
+Create chat logic instance by `this->_chatLogic = std::make_unique<ChatLogic>()` and comment out all content in destructor in `chatgui.cpp`.
 
 ### Task 2 : The Rule Of Five
 In file `chatbot.h` / `chatbot.cpp`, make changes to the class `ChatBot` such that it complies with the Rule of Five. Make sure to properly allocate / deallocate memory resources on the heap and also copy member data where it makes sense to you.  In each of the methods (e.g. the copy constructor), print a string of the type "ChatBot Copy Constructor" to the console so that you can see which method is called in later examples. 
 
 My solution:
-Add codes below to chatbot.cpp
+Add codes below to `chatbot.cpp`
 ```
 // copy constructor
 ChatBot::ChatBot(const ChatBot &source) {   
@@ -132,7 +132,13 @@ Changed `std::vector<GraphNode *> _nodes` to `std::vector<std::unique_ptr<GraphN
 
 In files `chatlogic.h` / `chatlogic.cpp` and `graphnodes.h` / `graphnodes.cpp` change the ownership of all instances of `GraphEdge` in a way such that each instance of `GraphNode` exclusively owns the outgoing `GraphEdges` and holds non-owning references to incoming `GraphEdges`. Use appropriate smart pointers and where required, make changes to the code such that data structures and function parameters reflect the changes. When transferring ownership from class `ChatLogic`, where all instances of `GraphEdge` are created, into instances of `GraphNode`, make sure to use move semantics. 
 My solution:
-
+Modify AddEdgeToChildNode in `graphnode.cpp` as below. Change the parameter passing into the function from raw pointer to unique pointer.
+```
+void GraphNode::AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge)
+{
+    _childEdges.push_back(std::move(edge));
+}
+```
 
 ### Task 5 : Moving the ChatBot
 
@@ -145,3 +151,16 @@ ChatBot Destructor
 ChatBot Destructor 
 ```
 My solution:
+When adding chatbot to graph root node in `chatlogic.cpp`, change 
+```
+_chatBot->SetRootNode(rootNode);
+rootNode->MoveChatbotHere(_chatBot);
+```
+to 
+```
+ChatBot newChatBot("../images/chatbot.png");
+newChatBot.SetChatLogicHandle(this);
+newChatBot.SetRootNode(rootNode);
+rootNode->MoveChatbotHere(std::move(newChatBot));
+```
+then modify functions `MoveChatbotHere` and `MoveChatbotToNewNode` in `graphnode.cpp` to fit the changes.
