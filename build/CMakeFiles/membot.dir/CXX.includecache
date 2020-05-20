@@ -6,24 +6,6 @@
 
 #IncludeRegexTransform: 
 
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/chatbot.cpp
-iostream
--
-random
--
-algorithm
--
-ctime
--
-chatlogic.h
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/chatlogic.h
-graphnode.h
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/graphnode.h
-graphedge.h
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/graphedge.h
-chatbot.h
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/chatbot.h
-
 D:/Downloads/home/CppND-Memory-Management-Chatbot/src/chatbot.h
 wx/bitmap.h
 -
@@ -52,30 +34,6 @@ wx/wx.h
 memory
 -
 
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/chatlogic.cpp
-fstream
--
-sstream
--
-iostream
--
-vector
--
-iterator
--
-tuple
--
-algorithm
--
-graphedge.h
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/graphedge.h
-graphnode.h
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/graphnode.h
-chatbot.h
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/chatbot.h
-chatlogic.h
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/chatlogic.h
-
 D:/Downloads/home/CppND-Memory-Management-Chatbot/src/chatlogic.h
 vector
 -
@@ -83,20 +41,6 @@ string
 -
 chatgui.h
 D:/Downloads/home/CppND-Memory-Management-Chatbot/src/chatgui.h
-
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/graphedge.h
-vector
--
-string
--
-
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/graphnode.h
-vector
--
-string
--
-chatbot.h
-D:/Downloads/home/CppND-Memory-Management-Chatbot/src/chatbot.h
 
 D:/Downloads/wxWidgets-3.1.3/include/wx/accel.h
 wx/defs.h
